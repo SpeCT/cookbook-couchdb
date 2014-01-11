@@ -16,6 +16,7 @@ depends           'yum', '~> 3.0'
 depends           'yum-epel'
 recipe            'couchdb', 'Installs and configures CouchDB package'
 recipe            'couchdb::source', 'Installs and configures CouchDB from source'
+recipe            "couchdb::apache", "Installs and configures CouchDB using install instructions from apache.org"
 
 supports          'ubuntu', '>= 8.10' # for package in APT
 supports          'debian', '>= 5.0' # for package in APT
