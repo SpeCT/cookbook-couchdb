@@ -21,6 +21,11 @@ default['couch_db']['src_checksum']   = 'b54e643f3ca5f046cfd2f329a001efeaae8a309
 default['couch_db']['src_version']    = '1.5.0'
 default['couch_db']['src_mirror']     = "http://archive.apache.org/dist/couchdb/source/#{node['couch_db']['src_version']}/apache-couchdb-#{node['couch_db']['src_version']}.tar.gz"
 default['couch_db']['install_erlang'] = true
+default['couch_db']['buildcouch_src'] = "https://github.com/iriscouch/build-couchdb/archive/master.tar.gz"
+default['couch_db']['buildcouch_git'] = "git://github.com/iriscouch/build-couchdb.git"
+default['couch_db']['buildcouch_erlang'] = "OTP_R15B01"
+default['couch_db']['buildcouch_couch'] = "git://github.com/apache/couchdb.git origin/1.5.x"
+default['couch_db']['buildcouch_couch_xoauth'] = "git://github.com/ocastalabs/CouchDB-XO_Auth origin/develop"
 
 # Attributes below are used to configure your couchdb instance.
 # These defaults were extracted from this url:
