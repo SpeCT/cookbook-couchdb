@@ -59,7 +59,10 @@ bash "install couchdb #{node['couch_db']['src_version']}" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
     tar -zxf #{couchdb_tar_gz}
-    cd #{couch_filename} && ./configure #{compile_flags} && make && make install
+    cd #{couch_filename}
+    ./bootstrap
+    ./configure #{compile_flags}
+    make && make install
   EOH
   not_if "test -f /usr/local/bin/couchdb && /usr/local/bin/couchdb -V | grep 'Apache CouchDB #{node['couch_db']['src_version']}'"
 end
