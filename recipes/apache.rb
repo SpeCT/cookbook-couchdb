@@ -22,7 +22,8 @@ if node['platform'] == "ubuntu" && node['platform_version'].to_f == 8.04
   return
 end
 
-couchdb_tar_gz = File.join(Chef::Config[:file_cache_path], "/", "apache-couchdb-#{node['couch_db']['src_version']}.tar.gz")
+couch_filename = node['couch_db']['src_filename'] or "apache-couchdb-#{node['couch_db']['src_version']}"
+couchdb_tar_gz = File.join(Chef::Config[:file_cache_path], "/", "#{couch_filename}.tar.gz")
 compile_flags = String.new
 
 
@@ -58,7 +59,7 @@ bash "install couchdb #{node['couch_db']['src_version']}" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
     tar -zxf #{couchdb_tar_gz}
-    cd apache-couchdb-#{node['couch_db']['src_version']} && ./configure #{compile_flags} && make && make install
+    cd #{couch_filename} && ./configure #{compile_flags} && make && make install
   EOH
   not_if "test -f /usr/local/bin/couchdb && /usr/local/bin/couchdb -V | grep 'Apache CouchDB #{node['couch_db']['src_version']}'"
 end
